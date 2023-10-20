@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj3l75816anov"]
+
+[ext_resource type="PackedScene" uid="uid://wssnx1an6whd" path="res://Player.tscn" id="1_s72jo"]
+[ext_resource type="Script" path="res://Player.gd" id="2_kg5ig"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a76y2"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ftinu"]
+sky_material = SubResource("ProceduralSkyMaterial_a76y2")
+
+[sub_resource type="Environment" id="Environment_h51ym"]
+background_mode = 2
+sky = SubResource("Sky_ftinu")
+tonemap_mode = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h51ym")
+
+[node name="Player" parent="." instance=ExtResource("1_s72jo")]
+script = ExtResource("2_kg5ig")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.63004, 0)
+use_collision = true
+size = Vector3(10, 0.2, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.526229, 0.850343, 0, -0.850343, 0.526229, 0, 0, 0)
+
+[node name="my test subject" type="CSGBox3D" parent="." groups=["grab"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.44307)
+use_collision = true
